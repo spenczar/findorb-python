@@ -1,0 +1,18 @@
+[submodule "find_orb"]
+	path = find_orb
+	url = https://github.com/Bill-Gray/find_orb.git
+[submodule "findorb-src/lunar"]
+	path = findorb-src/lunar
+	url = https://github.com/Bill-Gray/lunar.git
+[submodule "findorb-src/sat_code"]
+	path = findorb-src/sat_code
+	url = https://github.com/Bill-Gray/sat_code.git
+[submodule "findorb-src/jpl_eph"]
+	path = findorb-src/jpl_eph
+	url = https://github.com/Bill-Gray/jpl_eph.git
+[submodule "findorb-src/find_orb"]
+	path = findorb-src/find_orb
+	url = https://github.com/Bill-Gray/find_orb.git
+[submodule "findorb-src/miscell"]
+	path = findorb-src/miscell
+	url = https://github.com/Bill-Gray/miscell.git
