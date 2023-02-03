@@ -1,0 +1,74 @@
+diff --git a/bias.cpp b/bias.cpp
+index 27f442a..0a57d24 100644
+--- a/bias.cpp
++++ b/bias.cpp
+@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 
+ void ra_dec_to_xy( const double ra, const double dec, double *x, double *y);
+ unsigned xy_to_healpix( const double x, const double y, const unsigned N);
+-int find_fcct_biases( const double ra, const double dec, const char catalog,
++int find_fcct_biases( const double ra, const double dec, const signed char catalog,
+                  const double jd, double *bias_ra, double *bias_dec);
+ 
+ #define BIAS_NO_DATA_FOR_THAT_CATALOG     -1
+@@ -68,7 +68,7 @@ const char *fcct14_bias_file_name = NULL;
+ 
+ FILE *fopen_ext( const char *filename, const char *permits);   /* miscell.cpp */
+ 
+-int find_fcct_biases( const double ra, const double dec, const char catalog,
++int find_fcct_biases( const double ra, const double dec, const signed char catalog,
+                  const double jd, double *bias_ra, double *bias_dec)
+ {
+    static int16_t *bias_data = NULL;
+diff --git a/findorb.cpp b/findorb.cpp
+index b0a9a3f..97a7b3a 100644
+--- a/findorb.cpp
++++ b/findorb.cpp
+@@ -245,7 +245,7 @@ void make_observatory_info_text( char *text, const size_t textlen,
+              const OBSERVE *obs, int n_obs, const char *mpc_code);
+ void size_from_h_text( const double abs_mag, char *obuff,
+                                  const int obuff_size);  /* ephem0.c */
+-int find_fcct_biases( const double ra, const double dec, const char catalog,
++int find_fcct_biases( const double ra, const double dec, const signed char catalog,
+                  const double jd, double *bias_ra, double *bias_dec);
+ 
+ #ifdef __cplusplus
+diff --git a/lsquare.cpp b/lsquare.cpp
+index 16f318d..668f3fb 100644
+--- a/lsquare.cpp
++++ b/lsquare.cpp
+@@ -45,7 +45,7 @@ idea for nearly-singular matrices.  */
+       with a mere 52 bits of precision.   */
+ 
+ #if ((__GNUC__ * 100) + __GNUC_MINOR__) >= 406 && !defined( __arm__)
+-#define ldouble    __float128
++#define ldouble    _Float128
+ #else
+ #define ldouble    long double
+ #endif
+diff --git a/mpc_obs.cpp b/mpc_obs.cpp
+index a852ec5..5962148 100644
+--- a/mpc_obs.cpp
++++ b/mpc_obs.cpp
+@@ -1797,7 +1797,7 @@ static void adjust_for_aberration( OBSERVE FAR *obs)
+ int apply_debiasing = 0;
+ int object_type;
+ 
+-int find_fcct_biases( const double ra, const double dec, const char catalog,
++int find_fcct_biases( const double ra, const double dec, const signed char catalog,
+                  const double jd, double *bias_ra, double *bias_dec);
+ 
+ static int parse_observation( OBSERVE FAR *obs, const char *buff)
+diff --git a/orb_func.cpp b/orb_func.cpp
+index 841e87a..103c364 100644
+--- a/orb_func.cpp
++++ b/orb_func.cpp
+@@ -78,7 +78,7 @@ int integration_method = 0;
+ extern int debug_level;
+ 
+ int generic_message_box( const char *message, const char *box_type);
+-int find_fcct_biases( const double ra, const double dec, const char catalog,
++int find_fcct_biases( const double ra, const double dec, const signed char catalog,
+                  const double jd, double *bias_ra, double *bias_dec);
+ 
+ #define AUTOMATIC_PERTURBERS  1

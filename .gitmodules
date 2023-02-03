@@ -16,3 +16,22 @@
 [submodule "findorb-src/miscell"]
 	path = findorb-src/miscell
 	url = https://github.com/Bill-Gray/miscell.git
+[submodule "extern/lunar"]
+	path = extern/lunar
+	url = https://github.com/Bill-Gray/lunar.git
+[submodule "extern/sat_code"]
+	path = extern/sat_code
+	url = https://github.com/Bill-Gray/sat_code.git
+[submodule "extern/jpl_eph"]
+	path = extern/jpl_eph
+	url = https://github.com/Bill-Gray/jpl_eph.git
+[submodule "extern/find_orb"]
+	path = extern/find_orb
+	url = https://github.com/Bill-Gray/find_orb.git
+[submodule "extern/miscell"]
+	path = extern/miscell
+	url = https://github.com/Bill-Gray/miscell.git
+[submodule "extern/pybind11"]
+	path = extern/pybind11
+	url = https://github.com/pybind/pybind11.git
+	branch = stable
