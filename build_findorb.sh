@@ -35,6 +35,7 @@ make clean
 if [ $(uname -m) -eq "aarch64" ]; then
     patch < ../../findorb_patches.diff
 fi
+patch < ../../makefile_patch.diff
 make
 make install
 cd -

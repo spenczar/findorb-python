@@ -6,5 +6,7 @@ apt-get install -y \
 	python3-dev \
 	cmake
 
+pip install pip --upgrade
+
 pip install pybind11
 

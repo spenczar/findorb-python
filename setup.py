@@ -8,7 +8,7 @@ ext_modules = [
         ["src/findorb.cpp"],
         library_dirs=["/root/lib"],
         include_dirs=["/root/include"],
-        libraries=["lunar"],
+        libraries=["lunar", "findorb", "jpl", "satell"],
     ),
 ]
 
