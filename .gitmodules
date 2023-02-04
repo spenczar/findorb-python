@@ -10,9 +10,6 @@
 [submodule "extern/find_orb"]
 	path = extern/find_orb
 	url = https://github.com/Bill-Gray/find_orb.git
-[submodule "extern/miscell"]
-	path = extern/miscell
-	url = https://github.com/Bill-Gray/miscell.git
 [submodule "extern/pybind11"]
 	path = extern/pybind11
 	url = https://github.com/pybind/pybind11.git
