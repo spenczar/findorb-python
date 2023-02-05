@@ -1,0 +1,75 @@
+diff --git a/b32_eph.cpp b/b32_eph.cpp
+index 2e1ce95..aaac6ad 100644
+--- a/b32_eph.cpp
++++ b/b32_eph.cpp
+@@ -34,7 +34,7 @@ const char *get_environment_ptr( const char *env_ptr);     /* mpc_obs.cpp */
+ int generic_message_box( const char *message, const char *box_type);
+ int earth_lunar_posn( const double jd, double FAR *earth_loc, double FAR *lunar_loc);
+ int planet_posn( const int planet_no, const double jd, double *vect_2000);
+-int integrate_orbit( double *orbit, double t0, double t1);
++extern "C" int integrate_orbit( double *orbit, double t0, double t1);
+ int add_ephemeris_details( FILE *ofile, const double start_jd,  /* b32_eph.c */
+                                                const double end_jd);
+ int create_b32_ephemeris( const char *filename, const double epoch,
+diff --git a/makefile b/makefile
+index ac7a5a4..1014c8a 100644
+--- a/makefile
++++ b/makefile
+@@ -125,9 +125,9 @@ ifndef FO_EXE
+ 	FIND_ORB_EXE=find_orb
+ endif
+ 
+-all: $(FO_EXE) $(FIND_ORB_EXE) fo_serve.cgi eph2tle$(EXE)
++all: $(FO_EXE) $(FIND_ORB_EXE) fo_serve.cgi eph2tle$(EXE) libfindorb.a
+ 
+-CXXFLAGS+=-c -Wall -pedantic -Wextra -Werror $(ADDED_CXXFLAGS) -I $(INSTALL_DIR)/include
++CXXFLAGS+=-c -Wall -fPIC -pedantic -Wextra -Werror $(ADDED_CXXFLAGS) -I $(INSTALL_DIR)/include
+ 
+ ifdef DEBUG
+ 	CXXFLAGS += -g -Og
+@@ -311,6 +311,12 @@ else
+ endif
+ 	$(CP) $(INSTALL_FILES) $(IDIR)
+ 	$(CP) -n hints.txt $(IDIR)
++	$(MKDIR) $(LIB_DIR)
++	$(CP) libfindorb.a $(LIB_DIR)
++	$(CP) sigma.h $(INSTALL_DIR)/include
++	$(CP) mpc_obs.h $(INSTALL_DIR)/include
++	$(CP) findorb.h $(INSTALL_DIR)/include
++	$(CP) monte0.h $(INSTALL_DIR)/include
+ 
+ uninstall:
+ ifdef EXE
+@@ -346,3 +352,6 @@ make_deb:
+ 
+ .cpp.o:
+ 	$(CXX) $(CXXFLAGS) $<
++
++libfindorb.a: $(OBJS) fo.o
++	ar crsv libfindorb.a $(OBJS) fo.o
+diff --git a/mpc_obs.h b/mpc_obs.h
+index b4c87f3..9275e8b 100644
+--- a/mpc_obs.h
++++ b/mpc_obs.h
+@@ -258,7 +258,7 @@ int ephemeris_in_a_file_from_mpc_code( const char *filename,
+          ephem_option_t options, const unsigned n_objects);
+ int find_best_fit_planet( const double jd, const double *ivect,
+                      double *rel_vect);     /* runge.cpp */
+-int integrate_orbit( double *orbit, const double t0, const double t1);
++extern "C" int integrate_orbit( double *orbit, const double t0, const double t1);
+ int generate_obs_text( const OBSERVE FAR *obs, const int n_obs, char *buff,
+                                           const size_t buffsize);
+ double convenient_gauss( const OBSERVE FAR *obs, int n_obs, double *orbit,
+diff --git a/orb_func.cpp b/orb_func.cpp
+index 841e87a..a189d6e 100644
+--- a/orb_func.cpp
++++ b/orb_func.cpp
+@@ -388,7 +388,7 @@ static void ldouble_to_double( double *ovals, const long double *ivals,
+       *ovals++ = (double)*ivals++;
+ }
+ 
+-int integrate_orbitl( long double *orbit, const long double t0, const long double t1)
++extern "C" int integrate_orbitl( long double *orbit, const long double t0, const long double t1)
+ {
+    long double stepsize = 2.;
+    static long double fixed_stepsize = -1.;
