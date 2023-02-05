@@ -23,11 +23,10 @@ Once there, you can run 'python3' for a python shell, and then `import findorb`.
 0.4090474166917212
 ```
 
-There's another function, `findorb.integrate_orbit`, which doesn't yet work - but it _is there_, which is a partial success. I think it fails because of an assertion in find_orb about configuration data:
+There's another function, `findorb.integrate_orbit`, which doesn't yet work - but it _is there_, which is a partial success. It will really call `integrate_orbit` in `find_orb`.
 ```
 >>> findorb.integrate_orbit
 <built-in function integrate_orbit>
 >>> findorb.integrate_orbit(1, 2, 3)
-python3: mpc_obs.cpp:4804: int load_default_environment_file(): Assertion `!rval' failed.
-Aborted
+
 ```

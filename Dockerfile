@@ -27,3 +27,6 @@ RUN pip install cython
 ADD . /opt/code
 WORKDIR /opt/code
 RUN pip install -e .
+
+RUN cp /opt/code/extern/find_orb/environ.def /opt/code/environ.def
+RUN cp /opt/code/extern/find_orb/efindorb.txt /opt/code/efindorb.txt
