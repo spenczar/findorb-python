@@ -27,7 +27,7 @@ index ac7a5a4..1014c8a 100644
  
  ifdef DEBUG
  	CXXFLAGS += -g -Og
-@@ -311,6 +311,12 @@ else
+@@ -311,6 +311,11 @@ else
  endif
  	$(CP) $(INSTALL_FILES) $(IDIR)
  	$(CP) -n hints.txt $(IDIR)
@@ -35,7 +35,6 @@ index ac7a5a4..1014c8a 100644
 +	$(CP) libfindorb.a $(LIB_DIR)
 +	$(CP) sigma.h $(INSTALL_DIR)/include
 +	$(CP) mpc_obs.h $(INSTALL_DIR)/include
-+	$(CP) findorb.h $(INSTALL_DIR)/include
 +	$(CP) monte0.h $(INSTALL_DIR)/include
  
  uninstall:
