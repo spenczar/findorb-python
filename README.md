@@ -12,7 +12,7 @@ Clone this repo.
 
 Run the `post_clone.sh` script from the repo root, which fetches the find_orb code and applies patches.
 
-`docker build -it findorb-python .` to build findorb-python in a docker container
+`docker build -t findorb-python .` to build findorb-python in a docker container
 
 `docker run -it --rm findorb-python bash` to launch the container.
 
